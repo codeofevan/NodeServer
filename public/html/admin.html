@@ -1,0 +1,233 @@
+<h1>后台界面</h1>
+<br />
+<!-- 1、导出表框架及执行SQL：<br> -->
+<form action="/sql" method="post">
+  <fieldset style="width:300px;">
+    <legend>导出表框架及执行SQL</legend>
+    SQL语句：<input type="text" name="sql" /><br />
+    文件名：frame_<input type="text" name="path" />.csv<br />
+    <input type="submit" value="导出" />
+  </fieldset>
+</form>
+<!-- 2、生成表原型：<br> --
+<form action='/file' method='post' enctype='multipart/form-data'>
+	<fieldset style='width:300px;'>
+		<legend>生成表原型</legend>
+		选择表文件（frame_*.csv）：<input type='file' name='file'/><br>
+		<input type='submit' value='生成'>
+	</fieldset>
+</form>
+<!-- 3、在数据库创建表：<br> --
+<form action='/db' method='post' >
+	<fieldset style='width:300px;'>
+		<legend>生成表原型</legend>
+		表框架路径：frame_<input type='text' name='path'/>.csv<br>
+		数据库表名：<input type='text' name='tbname'/><br>
+		<input type='submit' value='创建'>
+	</fieldset>
+</form>
+<!-- 4、在数据库创建表：<br> --
+<form action='/comment' method='post' >
+	<fieldset style='width:300px;'>
+		<legend>生成表备注</legend>
+		数据库名：<input type='text' name='dbname'/><br>
+		数据表名：<input type='text' name='tbname'/><br>
+		<input type='submit' value='创建'>
+	</fieldset>
+</form>
+<!-- 5、生成数据文件：<br> -->
+<form action="/dbinfo" method="post">
+  <fieldset style="width:300px;">
+    <legend>生成数据文件</legend>
+    数据库名：<input type="text" name="dbname" /><br />
+    数据表名：<input type="text" name="tbname" /><br />
+    <input type="submit" value="生成" />
+  </fieldset>
+</form>
+<!-- 6、数据库中生成表：<br> -->
+<form action="/createdb" method="post">
+  <fieldset style="width:300px;">
+    <legend>生成数据库表</legend>
+    数据库名：<input type="text" name="dbname" /><br />
+    数据表名：<input type="text" name="tbname" /><br />
+    <input type="submit" value="生成" />
+  </fieldset>
+</form>
+
+<!-- 7、生成路由器：<br> -->
+<form id="form7" action="/createRouter" method="post" onsubmit="return fn_form7();">
+  <fieldset style="width:300px;">
+    <legend>生成路由器</legend>
+    数据库名：<input type="text" name="dbname" /><br />
+    数据表名：<input type="text" name="tbname" />
+    <input type='checkbox' id="sel" name="sel_cb"/>
+    <br />
+    <input type="submit" value="生成" />
+    <div style="border:solid 1px red;">
+      <ul>
+        <li>
+          <input type="checkbox" id="list" name="list_cb" />
+          <label for="list">列表</label>
+          表名<input type="text" name="list" />
+        </li>
+        <li>
+          <input type="checkbox" id="add" name="add_cb" />
+          <label for="add">新增</label>
+          表名<input type="text" name="reg" />
+        </li>
+        <li>
+          <input type="checkbox" id="del" name="del_cb" />
+          <label for="del">删除</label>
+          表名<input type="text" name="delete" />
+        </li>
+        <li>
+          <input type="checkbox" id="update" name="update_cb" />
+          <label for="update">修改</label>
+          表名<input type="text" name="update" />
+        </li>
+        <li>
+          <input type="checkbox" id="detail" name="detail_cb" />
+          <label for="detail">详情</label>
+          表名<input type="text" name="detail" />
+        </li>
+        <li>
+          <input type="checkbox" id="custom" name="custom_cb" />
+          <label for="custom">自定义</label>
+          自定义条件<input type="text" name="condition" />
+        </li>
+      </ul>
+    </div>
+    <button class="add">添加</button>
+    <!-- <a id='a1'>123</a> -->
+  </fieldset>
+</form>
+<!-- 
+<h3>数据库操作【谨慎】</h3>
+		1、导入数据到数据库：<br>
+		<form action='/indb' method='post' enctype='multipart/form-data'>
+			选择数据文件：<input type='file' name='file'/><br>
+			<input type='submit' value='导入'>
+		</form>
+		-->
+<script>
+  //提交
+  function fn_form7() {
+    var ipt = document.querySelectorAll('#form7 input[type="text"]');
+    var lis = document.querySelectorAll('#form7 input[type="checkbox"]');
+    for(let li of lis){
+      li.disabled='true';
+    }
+    for (let pt of ipt) {
+      if (!pt.value) {
+        pt.disabled = 'true';
+      }
+    }
+    return true;
+  }
+  //1触发元素
+  //2修改元素
+  var chb_g = document.querySelector('#form7>fieldset>input[type="checkbox"]');
+  var chb_is = document.querySelectorAll('#form7 div[style]:last-of-type li');
+  //3事件函数
+  chb_g.onclick = function () {
+    var chb_is = document.querySelectorAll('#form7 div[style]:last-of-type li');
+    if (this.checked) {
+      this.checked = true;
+    } else {
+      this.checked = false;
+    }
+    for (let chb_i of chb_is) {
+      chb_i.firstElementChild.checked = this.checked;
+      chb_i.children[2].value=chb_g.previousElementSibling.value;
+    }
+  };
+  for (let chb_i of chb_is) {
+
+    chb_i.onclick = function () {
+      var chk = document.querySelector('#form7 div[style]:last-of-type li>input[type="checkbox"]:not(:checked)');
+      if (chk) {
+        chb_g.checked = false;
+      } else {
+        chb_g.checked = true;
+      }
+      if (this.checked) {
+        this.checked = true;
+      } else {
+        this.checked = false;
+        this.children[2].value='';
+      }
+    }
+  }
+  //4修改变更
+
+  var a1 = document.getElementById('a1');
+  // a1.onclick = function () {
+  // }
+
+  //复制
+  var btn = document.querySelector("#form7 button[class]");
+  //var div=document.querySelectorAll('#form7 div[style]')[0];
+  var num = 0;
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    var div = document.querySelectorAll("#form7 div[style]:last-of-type")[0];
+    var licbox = div.firstElementChild.children;
+    var clone = div.cloneNode(true);
+    var clicbox = clone.firstElementChild.children;
+    for (let cb of clicbox) {
+      cb.firstElementChild.checked = false;
+    }
+    for (let cb of licbox) {
+      var bool = cb.firstElementChild.checked;
+      if (!bool) {
+        cb.style = "display:none";
+        var ipt = cb.querySelectorAll('input[type="text"]');
+        for (let pt of ipt) {
+          pt.disabled = "true";
+        }
+      }
+    }
+    clone.innerHTML = fn_innerHtml(num++);
+    div.parentNode.appendChild(clone);
+  });
+
+  function fn_innerHtml(number) {
+    return `<ul>
+        <li>
+          <input type="checkbox" id="list" name="list_cb" />
+          <label for="list">列表</label>
+          表名<input type="text" name="list_${number}" />
+        </li>
+        <li>
+          <input type="checkbox" id="add" name="add_cb" />
+          <label for="add">新增</label>
+          表名<input type="text" name="add_${number}" />
+        </li>
+        <li>
+          <input type="checkbox" id="del" name="del_cb" />
+          <label for="del">删除</label>
+          表名<input type="text" name="del_${number}" />
+        </li>
+        <li>
+          <input type="checkbox" id="update" name="update_cb" />
+          <label for="update">修改</label>
+          表名<input type="text" name="update_${number}" />
+        </li>
+        <li>
+          <input type="checkbox" id="detail" name="detail_cb" />
+          <label for="detail">详情</label>
+          表名<input type="text" name="detail_${number}" />
+        </li>
+        <li>
+          <input type="checkbox" id="custom" name="custom_cb" />
+          <label for="custom">自定义</label>
+          自定义条件<input type="text" name="condition" />
+        </li>
+      </ul>`;
+  }
+
+  /*<!-- 　　var value = localStorage["name"]; -->
+<!-- 　　alert(value); -->
+var url=location.search;
+//alert(url);*/
+</script>

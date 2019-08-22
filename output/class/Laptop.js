@@ -1,0 +1,24 @@
+class Laptop{
+	constructor(family_id,title,subtitle,price,promise,spec,lname,os,memory,resolution,video_card,cpu,video_memory,category,disk,details,shelf_time,sold_count,is_onsale){
+		this.family_id=family_id;
+		this.title=title;
+		this.subtitle=subtitle;
+		this.price=price;
+		this.promise=promise;
+		this.spec=spec;
+		this.lname=lname;
+		this.os=os;
+		this.memory=memory;
+		this.resolution=resolution;
+		this.video_card=video_card;
+		this.cpu=cpu;
+		this.video_memory=video_memory;
+		this.category=category;
+		this.disk=disk;
+		this.details=details;
+		this.shelf_time=shelf_time;
+		this.sold_count=sold_count;
+		this.is_onsale=is_onsale;
+	}
+}
+module.exports=Laptop;

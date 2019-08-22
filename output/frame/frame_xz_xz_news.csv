@@ -1,0 +1,7 @@
+﻿Field,Type,Null,Key,Default,Extra
+nid,INT,NO,PRI,null,auto_increment
+title,varchar(255),YES,,null,
+img,varchar(255),YES,,null,
+content,varchar(255),YES,,null,
+time,DATETIME,YES,,null,
+point,INT,YES,,null,

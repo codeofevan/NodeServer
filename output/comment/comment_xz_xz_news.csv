@@ -1,0 +1,7 @@
+﻿col_name,comment
+nid,编号
+title,新闻标题
+img,图片
+content,新闻内容
+time,时间
+point,点击量

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>1. 实现伸缩二级菜单</title>
+	<meta charset="utf-8" />
+
+	<style>
+		.container a {
+			text-decoration: none;
+		}
+
+		.container ul {
+			list-style: none;
+		}
+
+		.container>ul:last-of-type {
+			position: relative;
+		}
+
+		.container>ul::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		.container>ul:first-child>li {
+			float: left;
+			width: 80px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+		}
+
+		.container>ul:last-child>li div {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+
+		.container .active {
+			background: #faa;
+		}
+	</style>
+</head>
+
+<body>
+	<div class='container'>
+		<ul>
+			<li>
+				<a href="javascript:void(0);" data-toggle='tab' data-target='#content1'>10aaa</a>
+			</li>
+			<li>
+				<a href="javascript:void(0);" data-toggle='tab' data-target='#content2'>20aaa</a>
+			</li>
+			<li>
+				<a href="javascript:void(0);" data-toggle='tab' data-target='#content3'>30aaa</a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<div id="content1">
+					111111at ServerResponse.json (d:\data\xz_0314\node_modules\express\lib\response.js:264:10)
+					at ServerResponse.send (d:\data\xz_0314\node_modules\express\lib\response.js:158:21)
+				</div>
+			</li>
+			<li>
+				<div id="content2">
+					22222222at ServerResponse.json (d:\data\xz_0314\node_modules\express\lib\response.js:264:10)
+					at ServerResponse.send (d:\data\xz_0314\node_modules\express\lib\response.js:158:21)
+				</div>
+			</li>
+			<li>
+				<div id="content3">
+					333333333at ServerResponse.json (d:\data\xz_0314\node_modules\express\lib\response.js:264:10)
+					at ServerResponse.send (d:\data\xz_0314\node_modules\express\lib\response.js:158:21)
+				</div>
+			</li>
+		</ul>
+
+	</div>
+	<script>
+		//获取标签页
+		var as=document.querySelectorAll('[data-toggle="tab"]');
+		var oli=document.querySelectorAll('.container>ul:last-of-type>li>div');
+		//绑定事件
+		for(var a of as){
+			a.onclick=function(){
+				for(var li of oli){
+					li.style.display='none';
+				}
+				for(var ao of as){
+					ao.className='';
+				}
+				var odiv=document.querySelector(this.getAttribute('data-target'));
+				console.log(odiv);
+				odiv.style.display='block';
+				this.className='active';
+			}
+		}
+		//获取修改元素
+		//修改
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+  <style>
+    span.msg{
+      font-size:1.2rem;
+      margin-left:1rem;
+    }
+    span.success{
+      background:lightGreen;
+      color:darkgreen;
+    }
+    span.fail{
+      background:lightpink;
+      color:darkRed;
+    }
+  </style>
+  <script>
+ 
+  </script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" name="" id="" >{{time|timeFilter()}}<br>
+    {{sex|sexFilter}}
+      <!-- <input type="text" name="" id="" value='123' v-model:value='pwd'>
+    <input type="radio" name="sex" id="" value='1' v-model:value='sex'>男
+    <input type="radio" name="sex" id="" value='0' v-model:value='sex'>女
+    <input type="checkbox" name="hobby" id="" value='0' v-model='hobby'>同意
+    <input type="checkbox" name="hobby" id="" value='1' v-model='hobby'>同意
+    <select name="" id="" v-model='opt'>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+    </select> -->
+    <!-- <button @click='search'>提交</button> -->
+    <!-- <input type="text" name="" id="" v-model='ipt'>
+    <span class="msg" :class='span_class' v-text='span_msg'></span> -->
+      <ul>
+        <li v-for='p of products'>
+          {{p.id}}-{{p.price.toFixed(2)}}
+        </li>
+      </ul>
+      <div>{{total.toFixed(2)}}</div>
+</div>
+<script>
+Vue.directive('focus', {
+  inserted(elem){
+    elem.focus();
+  }
+})
+Vue.filter('timeFilter', function(val){
+  console.log(val);
+  console.log(val.toLocaleString());
+  return val.toLocaleString();
+});
+Vue.filter('sexFilter', function(val){
+  return val=='1'?'男':'女';
+});
+var vm = new Vue({
+  el:'#app',
+  data:{
+    products:[{id:1,price:12},{id:2,price:15},{id:3,price:188}],
+    time:'1553764795696',
+    sex:0
+  },
+  methods:{
+
+  },
+  computed: {
+    total(){
+      var sum=0;
+      for(var i of this.products){
+        sum+=i.price;
+      }
+      return sum;
+    }
+  },
+});
+
+
+  /*
+var vm = new Vue({
+  el:'#app',
+  data:{
+    ipt:'',
+    span_class:{
+      success:false,
+      fail:false
+    },
+    span_msg:''
+  },
+  methods:{
+    vali(){
+      var reg=/^1\d{10}$/;
+      if(reg.test(this.ipt)){
+        this.span_class={success:true,fail:false}
+        this.span_msg='格式正确';
+      }else{
+        this.span_class={success:false,fail:true}
+        this.span_msg='格式错误';
+      }
+    }
+  },
+  watch:{
+    ipt(){
+      this.vali();
+    }
+  }
+});
+
+// var vm=new Vue({
+//   el:"#app",
+//   data:{
+//     pwd:'',
+//     sex:'1',
+//     hobby:'1',
+//     opt:20
+//   },
+//   methods: {
+//       search(){
+//           console.log(`查找${this.pwd},${this.sex},${this.hobby},${this.opt}信息`)
+//       }
+//   },
+//   watch:{
+//       pwd(){
+//           this.search();
+//       }
+//   }
+// })/**/
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+$width:500px;
+$height:300px;
+$tZ:603px;
+$tX:1;
+
+
+div {
+  perspective: 1800px;
+  position: relative;
+  top: 90px;
+}
+
+ul {
+  list-style: none;
+}
+
+ul {
+  width: $width;
+  height: $height;
+  margin: 50px auto;
+  /* margin-top:800px; */
+  position: relative;
+  transition: all 15s linear;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  padding: 0;
+  /* transform:rotateX(90deg); */
+}
+
+ul li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  line-height: 150px;
+  font-size: 40px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  border: solid 3px lightblue;
+  box-sizing: border-box;
+}
+
+/*
+    W-tZ
+    500-432
+    1-0.864
+    <1>tZ rY0
+    <2>tZ 1W rY-60r
+    <3>-1.5W rY-120r/-tZ rY-120l
+    <4>-tZ rY-180
+    <5>1.5W ry120l/-tz rY120r
+    <6>tZ 1W rY60l
+*/
+/*百*/
+li:nth-child(1) {
+  /* transform: translateZ(190px) rotateY(0deg); */
+  transform: translateZ($tZ) rotateY(0deg);
+  background:url('../img/1.jpg');
+}
+
+/*度*/
+li:nth-child(2) {
+  /* transform: translateZ(190px) translateX(-220px) rotateY(-60deg); */
+  transform: translateZ($tZ) translateX(-$width) rotateY(-45deg);
+  transform-origin: right;
+  background:url('../img/2.jpg');
+}
+
+/*经*/
+li:nth-child(3) {
+  transform: translateZ(0px) translateX(-$tZ) rotateY(-90deg);
+  background:url('../img/3.jpg');
+}
+
+/*验*/
+li:nth-child(4) {
+  /* transform: translateZ(-190px) rotateY(-180deg); */
+  transform: translateZ(-$tZ) translateX(0px) rotateY(-135deg);
+  transform-origin: left;
+  background:url('../img/4.jpg');
+}
+
+/*好*/
+li:nth-child(5) {
+  /* transform: translateZ(0px) translateX(330px) rotateY(120deg); */
+  transform: translateZ(-$tZ) rotateY(-180deg);
+  background:url('../img/5.jpg');
+}
+
+/*啊*/
+li:nth-child(6) {
+  transform: translateZ(-$tZ) translateX(-0px) rotateY(135deg);
+  transform-origin: right;
+  background:url('../img/1.jpg');
+}
+
+/*哦*/
+li:nth-child(7) {
+  transform: translateZ(0px) translateX($tZ) rotateY(90deg);
+  background:url('../img/2.jpg');
+}
+
+/*依*/
+li:nth-child(8) {
+  transform: translateZ($tZ) translateX($width) rotateY(45deg);
+  transform-origin: left;
+  background:url('../img/3.jpg');
+}
+
+ul:hover {
+
+  transform: rotateY(1turn);
+}

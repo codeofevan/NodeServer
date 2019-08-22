@@ -1,0 +1,9 @@
+col_name,comment
+uid,编号
+uname,用户名
+upwd,密码
+email,邮箱
+phone,手机
+avatar,头像
+user_name,姓名
+gender,性别

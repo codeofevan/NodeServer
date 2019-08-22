@@ -1,0 +1,9 @@
+Field,Type,Null,Key,Default,Extra
+uid,int(11),NO,PRI,null,auto_increment
+uname,varchar(32),YES,,null,
+upwd,varchar(32),YES,,null,
+email,varchar(64),YES,,null,
+phone,varchar(16),YES,,null,
+avatar,varchar(128),YES,,null,
+user_name,varchar(32),YES,,null,
+gender,int(11),YES,,null,
