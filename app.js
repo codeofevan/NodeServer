@@ -18,6 +18,7 @@ server.listen(8977, () => {
 server.use(express.static('./public'));
 //server.use(express.static('./test'));
 /*使用中间件*/
+server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({}));
 
 server.use(cors({
@@ -25,7 +26,8 @@ server.use(cors({
         'http://192.168.5.186:8081',
         'http://localhost:8077',
         'http://192.168.5.212:8077',
-        'http://192.168.5.223:8077'
+        'http://192.168.5.223:8077',
+        'http://192.168.5.220:8077',
     ],
     credentials: true
 }))

@@ -26,13 +26,13 @@ module.exports = router;
 // 查询补件项
 router.get('/supply', (req, res) => {
     let data = [
-        { id: 1, href: '../supply/personal.html', src: 'img/supply_personal.png', title: '个人信息', finish: '1' },
-        { id: 2, href: '../supply/capital.html', src: 'img/supply_capital.png', title: '资产情况', finish: '0' },
-        { id: 3, href: '../supply/service.html', src: 'img/supply_service.png', title: '运营商认证', finish: '0' },
-        { id: 4, href: '../supply/replenish.html', src: 'img/supply_replenish.png', title: '补充授权', finish: '0' },
-        { id: 5, href: '../supply/work.html', src: 'img/supply_work.png', title: '工作信息', finish: '0' },
-        { id: 6, href: '../supply/social.html', src: 'img/supply_social.png', title: '社交信息', finish: '0' },
-        { id: 7, href: '../supply/other.html', src: 'img/supply_other.png', title: '其他信息', finish: '0' },
+        { id: 1, href: '../supply/personal.html', label: 'personal', src: 'img/supply_personal.png', title: '个人信息', finish: '1' },
+        { id: 2, href: '../supply/capital.html', label: 'capital', src: 'img/supply_capital.png', title: '资产情况', finish: '0' },
+        /*       { id: 3, href: '../supply/service.html', label: 'service', src: 'img/supply_service.png', title: '运营商认证', finish: '0' },
+               { id: 4, href: '../supply/replenish.html', label: 'replenish', src: 'img/supply_replenish.png', title: '补充授权', finish: '0' },*/
+        { id: 5, href: '../supply/work.html', label: 'work', src: 'img/supply_work.png', title: '工作信息', finish: '0' },
+        { id: 6, href: '../supply/social.html', label: 'social', src: 'img/supply_social.png', title: '社交信息', finish: '0' },
+        { id: 7, href: '../supply/other.html', label: 'other', src: 'img/supply_other.png', title: '其他信息', finish: '0' },
     ]
     res.send({ code: '0000', resultList: data });
 })
@@ -52,6 +52,7 @@ router.get('/personal', (req, res) => {
     ]
     res.send({ code: '0000', resultList: data });
 });
+
 // 查询资产情况
 router.get('/capital', (req, res) => {
 
@@ -184,8 +185,61 @@ router.get('/replenish', (req, res) => {
 
 // 查询社交信息
 router.get('/social', (req, res) => {
-    let data = [
-        { id: 1, label: 'qq', name: 'qq' }
-    ]
-    res.send({ code: '0000', resultList: data });
+    let dataObj = {
+        fields: [
+            { id: 1, label: 'qq', name: 'qq', value: '' }
+        ],
+        fieldData: []
+    }
+    res.send({ code: '0000', resultList: dataObj });
+})
+
+// 提交补件项信息
+router.post('/create', (req, res) => {
+    let info = req.body
+    console.log(info)
+    res.send({ code: '0000', msg: '提交成功' });
+})
+
+/* 我的账单...  */
+// 查询账单信息
+router.get('/bill', (req, res) => {
+    let dataObj = {
+        billData: [
+            { id: 1, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷01', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '1' },
+            { id: 2, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷02', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 3, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷03', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 4, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷04', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 5, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷05', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '1' },
+            { id: 6, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷06', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 7, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷07', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+        ],
+        repayData: [
+            { id: 1, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷01', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '1' },
+            { id: 2, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷02', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 3, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷03', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 4, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷04', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 5, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷05', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '1' },
+            { id: 6, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷06', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+            { id: 7, href: 'javascript:;', src: 'img/xj-logo.png', title: '小营卡贷07', replayDate: '03/10', replay: '2022.32', total: '100000', periods: '12', curPeriod: '3', hadOverdue: '0' },
+        ]
+    }
+    res.send({ code: '0000', resultList: dataObj });
+})
+
+// 查询账单详情
+router.get('/bill/detail/:id', (req, res) => {
+    let qs = req.params.id
+    console.log(qs)
+    let dataObj = {
+        summary:
+            { id: 1, productIdenti: 'PRO001', borrow: '3000', borrowDate: '2019-01-23', periods: '3', status: '1' },
+        periods: [
+            { id: 1, repay: '200', curPeriod: '1', repayDate: '02-12', status: '1', overdueDays: '3' },
+            { id: 2, repay: '500', curPeriod: '2', repayDate: '03-12', status: '2', overdueDays: '2' },
+            { id: 3, repay: '1000', curPeriod: '3', repayDate: '04-12', status: '3', overdueDays: '1' },
+            { id: 4, repay: '1800', curPeriod: '4', repayDate: '05-12', status: '3', overdueDays: '3' },
+        ]
+    }
+    res.send({ code: '0000', resultList: dataObj });
 })
